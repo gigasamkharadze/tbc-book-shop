@@ -10,3 +10,6 @@ class Book(models.Model):
     price = models.IntegerField()
     image = models.ImageField(upload_to='images/', null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.name} written by {self.author_name}'
+    
