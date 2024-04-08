@@ -3,12 +3,12 @@ from django.db import models
 
 # Create your models here.
 class Book(models.Model):
-    name = models.CharField(max_length=100)
-    page_count = models.IntegerField()
-    category = models.CharField(max_length=100)
-    author_name = models.CharField(max_length=100)
-    price = models.IntegerField()
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    name = models.CharField(max_length=100, verbose_name='Name')
+    page_count = models.IntegerField(verbose_name='Page count')
+    category = models.CharField(max_length=100, verbose_name='Category')
+    author_name = models.CharField(max_length=100, verbose_name='Author name')
+    price = models.IntegerField(verbose_name='Price')
+    image = models.ImageField(upload_to='images/', null=True, blank=True, verbose_name='Image')
 
     def __str__(self):
         return f'{self.name} written by {self.author_name}'
