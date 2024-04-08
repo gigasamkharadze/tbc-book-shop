@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.core.serializers import serialize
 
@@ -17,6 +17,6 @@ def all_books(request):
 
 
 def book_detail(request, book_id):
-    book = Book.objects.get(id=book_id)
+    book = get_object_or_404(Book, id=book_id)
     serialized_book = serialize('json', [book])
     return JsonResponse(serialized_book, safe=False)
