@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="w-full flex justify-center gap-2 my-3">
+      {% for book in page_obj %}
+        <a href="{% url 'market:book_detail' book.id %}" class="block bg-gray-300 rounded-lg p-4 hover:bg-gray-400">
+          <div class="book text-center">
+            <span class="text-black font-bold">{{ book.name }}</span>
+            <p>{{ book.author_name }}</p>
+            <p>${{ book.price }}</p>
+            <img src="{{ book.image.url }}" alt="{{ book.name }}" class="w-32 h-32 mx-auto" />
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="pagination text-center">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+          <a href="?page=1" class="text-blue-500 hover:text-blue-700 mr-2">First</a>
+          <a href="?page={{ page_obj.previous_page_number }}" class="text-blue-500 hover:text-blue-700">Previous</a>
+        {% endif %}
+        <span class="current text-gray-600">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="text-blue-500 mr-2 hover:text-blue-700">Next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}" class="text-blue-500 hover:text-blue-700">Last</a>
+        {% endif %}
+      </span>
+    </div>
+
+{% endblock %}

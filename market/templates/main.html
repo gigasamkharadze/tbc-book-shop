@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Shop</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
+{% block content %}
+    <section class="min-h-screen bg-gray-900 text-white py-20">
+        <div class="flex px-24">
+            {% load static %}
+            <img src="{% static 'home.png' %}" alt="books" class="mx-auto w-1/3">
 
-<body class="bg-gray-100 font-sans">
-    <nav class="bg-gray-800 text-white p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-lg font-semibold">Book Shop</a>
-            <ul class="flex space-x-4">
-                <li><a href="#" class="hover:text-gray-300">Home</a></li>
-                <li><a href="#" class="hover:text-gray-300">Books</a></li>
-                <li><a href="#" class="hover:text-gray-300">About</a></li>
-                <li><a href="#" class="hover:text-gray-300">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="bg-gray-900 text-white py-20">
-        <div class="container mx-auto text-center">
-            <h1 class="text-4xl font-semibold">Welcome to our Book Shop</h1>
-            <p class="mt-4">Browse our collection of books</p>
-            <a href="/books/" class="inline-block mt-4 px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600">Explore Books</a>
+            <div class="container mx-auto">
+                <h1 class="text-4xl font-semibold">Welcome to our Book Shop</h1>
+                <p class="mt-4">Browse our collection of books</p>
+                <a href="/books/" class="inline-block mt-4 px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600">Explore Books</a>
+            </div>
         </div>
     </section>
-</body>
-</html>
+{% endblock %}
