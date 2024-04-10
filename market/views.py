@@ -22,5 +22,4 @@ def all_books(request):
 
 def book_detail(request, book_id):
     book = get_object_or_404(Book, id=book_id)
-    serialized_book = serialize('json', [book])
-    return JsonResponse(serialized_book, safe=False)
+    return render(request, 'book_detail.html', {'book': book})
