@@ -27,5 +27,3 @@ class Book(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['name', 'author_name'], name='unique_book')
         ]
-
-
