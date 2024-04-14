@@ -7,7 +7,8 @@
         <a href="{% url 'market:book_detail' book.id %}" class="block bg-gray-300 rounded-lg p-4 hover:bg-gray-400">
           <div class="book text-center">
             <span class="text-black font-bold">{{ book.name }}</span>
-            <p>{{ book.author_name }}</p>
+            <p>{{ book.category }}</p>
+              <p>{{ book.author.first_name }} {{ book.author.last_name }}</p>
             <p>${{ book.price }}</p>
             <img src="{{ book.image.url }}" alt="{{ book.name }}" class="w-32 h-32 mx-auto" />
           </div>
