@@ -4,10 +4,15 @@ from market.models import Book, Author, Category
 
 # Register your models here.
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['name', 'page_count', 'category', 'cover', 'author', 'price', 'image']
+    list_display = ['name', 'page_count', 'categories_display', 'cover', 'author_display', 'price', 'image']
     search_fields = ['name', 'author__first_name']
 
-    def author(self, obj):
+    def categories_display(self, obj):
+        return ', '.join([category.name for category in obj.categories.all()])
+    categories_display.short_description = 'Categories'
+
+    @staticmethod
+    def author_display(obj):
         return f'{obj.author.first_name} {obj.author.last_name}'
 
 

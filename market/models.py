@@ -15,7 +15,7 @@ class Book(models.Model):
 
     name = models.CharField(max_length=100, verbose_name=_('name'))
     page_count = models.IntegerField(verbose_name=_('page count'))
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='books', verbose_name=_('category'))
+    categories = models.ManyToManyField('Category', related_name='books', verbose_name=_('categories'))
     author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='books', verbose_name=_('author'))
     price = models.IntegerField(verbose_name='Price')
     cover = models.CharField(max_length=3, choices=COVER_CHOICES, default=SOFT_COVER, verbose_name=_('cover type'))
@@ -27,7 +27,7 @@ class Book(models.Model):
     class Meta:
         verbose_name = _('book')
         verbose_name_plural = _('books')
-        ordering = ['name', 'price', 'page_count', 'category', 'author']
+        ordering = ['name', 'price', 'page_count', 'author']
         indexes = [
             models.Index(fields=['price'], name='price_idx'),
             models.Index(fields=['page_count'], name='page_count_idx'),
