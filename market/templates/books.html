@@ -11,7 +11,7 @@
             <p>${{ book.price }}</p>
               {% for category in book.categories.all %}
                 {{ category.name }}.
-            {% endfor %} 
+            {% endfor %}
             <img src="{{ book.image.url }}" alt="{{ book.name }}" class="w-32 h-32 mx-auto" />
           </div>
         </a>
@@ -31,5 +31,21 @@
         {% endif %}
       </span>
     </div>
+
+    <form action="{% url 'market:all_books' %}" method="get" class="flex justify-center gap-2 my-3">
+        <label>
+            <input type="text" name="category" placeholder="Category" class="p-2 border border-gray-300 rounded-lg" />
+        </label>
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700">Search</button>
+    </form>
+
+    <form action="{% url 'market:all_books' %}" method="get" class="flex justify-center gap-2 my-3">
+        <label>
+            <input type="text" name="author" placeholder="Author" class="p-2 border border-gray-300 rounded-lg" />
+        </label>
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700">Search</button>
+    </form>
+
+
 
 {% endblock %}

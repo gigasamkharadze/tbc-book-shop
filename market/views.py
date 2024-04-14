@@ -11,10 +11,20 @@ def home(request):
 
 def all_books(request):
     books = Book.objects.all()
-    paginator = Paginator(books, 3)
 
+    author = request.GET.get('author')
+    category = request.GET.get('category')
+
+    if category:
+        books = books.filter(categories__name=category)
+
+    if author:
+        books = books.filter(author__first_name__startswith=author)
+
+    paginator = Paginator(books, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
     return render(request, 'books.html', {'page_obj': page_obj})
 
 
