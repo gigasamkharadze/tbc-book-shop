@@ -1,24 +1,16 @@
 from django.db import models
 from django.utils.translation import gettext as _
+from .choices import COVER_CHOICES
 
 
 # Create your models here.
 class Book(models.Model):
-    HARD_COVER = 'HC'
-    SOFT_COVER = 'SC'
-    SPECIAL_COVER = 'SPC'
-    COVER_CHOICES = [
-        (HARD_COVER, _('Hard cover')),
-        (SOFT_COVER, _('Soft cover')),
-        (SPECIAL_COVER, _('Special cover'))
-    ]
-
+    author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='books', verbose_name=_('author'))
+    categories = models.ManyToManyField('Category', related_name='books', verbose_name=_('categories'))
     name = models.CharField(max_length=100, verbose_name=_('name'))
     page_count = models.IntegerField(verbose_name=_('page count'))
-    categories = models.ManyToManyField('Category', related_name='books', verbose_name=_('categories'))
-    author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='books', verbose_name=_('author'))
     price = models.IntegerField(verbose_name='Price')
-    cover = models.CharField(max_length=3, choices=COVER_CHOICES, default=SOFT_COVER, verbose_name=_('cover type'))
+    cover = models.CharField(max_length=3, choices=COVER_CHOICES, default=None, verbose_name=_('cover type'))
     image = models.ImageField(upload_to='images/', null=True, blank=True, verbose_name=_('image'))
 
     def __str__(self):
